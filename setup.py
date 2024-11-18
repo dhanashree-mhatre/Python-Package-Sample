@@ -34,7 +34,7 @@ extensions = [
 
 setup(
     name="rejoai",                       # Package name
-    version="0.1.0",                         # Initial version
+    version="0.1.1",                         # Initial version
     description="A brief description",       # Short description
     long_description=open("README.md").read(),  # Detailed description from README
     long_description_content_type="text/markdown",
