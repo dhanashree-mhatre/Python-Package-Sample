@@ -29,7 +29,7 @@ extensions = [
 setup(
     name='rejoai',
     packages=find_packages(),
-    version='0.1.7',
+    version='0.1.8',
     description='my_project',
     author='author',
     license='Proprietary',
