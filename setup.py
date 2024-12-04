@@ -3,7 +3,6 @@ from Cython.Build import cythonize
 import os
 import shutil
 import glob
-
 # Helper function to find all .py files, excluding __init__.py
 def find_pyx_files(directory):
     pyx_files = []
