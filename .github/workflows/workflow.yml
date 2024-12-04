@@ -6,6 +6,12 @@ on:
   release:
     types: [ created ]
 
+# Add these permissions at the workflow level
+permissions:
+  contents: read
+  id-token: write
+
+
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
