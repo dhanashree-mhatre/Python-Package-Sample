@@ -3,7 +3,7 @@ from setuptools import find_packages, setup, Extension
 from Cython.Build import cythonize
 
 setup(
-    name="rejo-file",                       # Package name
+    name="rejoai",                       # Package name
     version="0.1.5",                         # Initial version
     description="A brief description",       # Short description
     long_description=open("README.md").read(),  # Detailed description from README
