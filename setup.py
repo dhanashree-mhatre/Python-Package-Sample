@@ -26,7 +26,7 @@ extensions = [Extension(
     [pyx]) for pyx in pyx_files]
 
 setup(
-    name='rejoai',
+    name='rejoai-file',
     packages=find_packages(),
     version='0.1.5',
     description='my_project',
