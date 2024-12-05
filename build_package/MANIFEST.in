@@ -1,4 +1,0 @@
-exclude *.pyc
-exclude *.c
-include rejo_ai/**/*.pyd
-include rejo_ai/**/*.so

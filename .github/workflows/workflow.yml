@@ -16,8 +16,8 @@ jobs:
   build-and-publish:
     runs-on: ubuntu-latest
     strategy:
-      matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+      matrix: 
+        python-version: [3.10, 3.12]
 
     steps:
     - uses: actions/checkout@v3
@@ -25,18 +25,35 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v3
       with:
-        python-version: '3.x'  # Use latest Python versions dynamically
+        python-version: ${{ matrix.python-version }}
     
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install setuptools wheel twine Cython cibuildwheel
-
-        - name: Build and Publish Wheels
-        run: |
-          cibuildwheel --output-dir dist
-  
+        pip install setuptools wheel twine Cython
+    
+    - name: Build .so files
+      run: |
+        # Create build_package directory
+        mkdir -p build_package
+        
+        # Convert Python files to .so using Cython
+        python setup.py build_ext --inplace
+        
+        # Copy .so files to build_package
+        find . -name "*.so" -exec cp {} build_package/ \;
+        
+        # Copy setup.py and other necessary files
+        cp setup.py build_package/
+        cp README.md build_package/
+        cp requirements.txt build_package/
+    
+    - name: Build distribution packages
+      run: |
+        cd build_package
+        python setup.py sdist bdist_wheel
+    
     - name: Publish to PyPI
       uses: pypa/gh-action-pypi-publish@release/v1
       with:
-        packages-dir: dist
+        packages-dir: build_package/dist
