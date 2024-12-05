@@ -3,6 +3,10 @@ from Cython.Build import cythonize
 import os
 import shutil
 import glob
+import sys
+
+python_version = f"{sys.version_info.major}{sys.version_info.minor}"
+package_version = f"0.2.3.post{python_version}"  
 
 def find_pyx_files(directory):
     pyx_files = []
@@ -29,7 +33,7 @@ extensions = [
 setup(
     name='rejoai',
     packages=find_packages(),
-    version='0.2.0.2',
+    version=package_version, 
     description="A brief description",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
