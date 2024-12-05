@@ -29,7 +29,7 @@ extensions = [
 setup(
     name='rejoai',
     packages=find_packages(),
-    version='0.2.0.1',
+    version='0.2.0.2',
     description="A brief description",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
