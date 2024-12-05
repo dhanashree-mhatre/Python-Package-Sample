@@ -29,8 +29,10 @@ extensions = [
 setup(
     name='rejoai',
     packages=find_packages(),
-    version='0.1.9',
-    description='my_project',
+    version='0.2.0',
+    description="A brief description",
+    long_description=open("README.md").read(),
+    long_description_content_type="text/markdown",
     author='author',
     license='Proprietary',
     setup_requires=['cython'],
