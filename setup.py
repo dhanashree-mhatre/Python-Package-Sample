@@ -8,7 +8,7 @@ def find_pyx_files(directory):
     pyx_files = []
     for root, dirs, files in os.walk(directory):
         for file in files:
-            if file.endswith(".py") and file != "__init__.py":
+            if file.endswith(".py"): #and file != "__init__.py":
                 pyx_files.append(os.path.join(root, file))
     return pyx_files
 
@@ -29,7 +29,7 @@ extensions = [
 setup(
     name='rejoai',
     packages=find_packages(),
-    version='0.1.8',
+    version='0.1.9',
     description='my_project',
     author='author',
     license='Proprietary',

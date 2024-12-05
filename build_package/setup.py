@@ -4,7 +4,7 @@ from Cython.Build import cythonize
 
 setup(
     name="rejoai",                       # Package name
-    version="0.1.8",                         # Initial version
+    version="0.1.9",                         # Initial version
     description="A brief description",       # Short description
     long_description=open("README.md").read(),  # Detailed description from README
     long_description_content_type="text/markdown",
@@ -22,4 +22,11 @@ setup(
         "Operating System :: OS Independent",
     ],
     python_requires=">=3.6",                 # Minimum Python version
+    include_package_data=True,  # Ensure non-code files are included
+    package_data={
+        "": ["*.so"],  # Include only .so files
+    },
+    exclude_package_data={
+        "": ["*.py", "*.pyc"],  # Exclude .py and .pyc files
+    },
 )
