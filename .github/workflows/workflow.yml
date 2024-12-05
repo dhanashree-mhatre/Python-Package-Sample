@@ -6,11 +6,9 @@ on:
   release:
     types: [ created ]
 
-# Add these permissions at the workflow level
 permissions:
   contents: read
   id-token: write
-
 
 jobs:
   build-and-publish:
@@ -34,26 +32,35 @@ jobs:
     
     - name: Build .so files
       run: |
-        # Create build_package directory
-        mkdir -p build_package
+        # Create a version-specific build directory
+        BUILD_DIR=build_${{ matrix.python-version }}
+        mkdir -p $BUILD_DIR
         
         # Convert Python files to .so using Cython
         python setup.py build_ext --inplace
         
-        # Copy .so files to build_package
-        find . -name "*.so" -exec cp {} build_package/ \;
+        # Copy .so files to the build directory
+        find . -name "*.so" -exec cp {} $BUILD_DIR/ \;
         
         # Copy setup.py and other necessary files
-        cp setup.py build_package/
-        cp README.md build_package/
-        cp requirements.txt build_package/
+        cp setup.py $BUILD_DIR/
+        cp README.md $BUILD_DIR/
+        cp requirements.txt $BUILD_DIR/
     
     - name: Build distribution packages
       run: |
-        cd build_package
+        cd $BUILD_DIR
         python setup.py sdist bdist_wheel
     
     - name: Publish to PyPI
       uses: pypa/gh-action-pypi-publish@release/v1
       with:
-        packages-dir: build_package/dist
+        packages-dir: $BUILD_DIR/dist
+
+    - name: Clean up
+      if: always()
+      run: |
+        rm -rf build_${{ matrix.python-version }}
+        rm -rf build
+        rm -rf dist
+        rm -rf *.egg-info
