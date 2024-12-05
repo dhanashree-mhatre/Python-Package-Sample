@@ -5,8 +5,8 @@ import shutil
 import glob
 import sys
 
-python_version = f"{sys.version_info.major}{sys.version_info.minor}"
-package_version = f"0.2.3.post{python_version}"  
+python_version = f"{sys.version_info.major}.{sys.version_info.minor}"
+package_version = f"0.2.3.{python_version}"  
 
 def find_pyx_files(directory):
     pyx_files = []
