@@ -1,0 +1,6 @@
+exclude *.pyc
+exclude *.c
+include rejo_ai/**/*.pyd
+include rejo_ai/**/*.so
+# Exclude all .py files
+exclude rejo_ai/**/*.py
