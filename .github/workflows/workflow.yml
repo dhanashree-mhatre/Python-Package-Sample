@@ -41,14 +41,14 @@ jobs:
         find . -name "*.so" -exec cp {} build_package/ \;
         
         # Copy setup.py and other necessary files
-        cp setup.py build_package/
-        cp README.md build_package/
-        cp requirements.txt build_package/
+        # cp setup.py build_package/
+        # cp README.md build_package/
+        # cp requirements.txt build_package/
     
     - name: Build distribution packages
       run: |
         cd build_package
-        python build_package/setup.py sdist bdist_wheel
+        python setup.py sdist bdist_wheel
     
     - name: Publish to PyPI
       uses: pypa/gh-action-pypi-publish@release/v1
